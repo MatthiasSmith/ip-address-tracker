@@ -14,7 +14,7 @@ module.exports = (env) => {
       filename: '[name].js',
       path: path.resolve(__dirname, 'dist'),
     },
-    devtool: 'inline-source-map',
+    devtool: env.NODE_ENV === 'development' ? 'inline-source-map' : false,
     plugins: [
       new CleanWebpackPlugin({ cleanStaleWebpackAssets: false }),
       new HtmlWebpackPlugin({
