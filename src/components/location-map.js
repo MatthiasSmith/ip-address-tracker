@@ -49,14 +49,29 @@ const LocationMap = ({ lat, lng }) => {
 
     map.panTo([lat, lng], 16).panBy([0, -35]);
     const myIcon = L.icon({
-      iconUrl: 'public/images/icon-location.svg',
+      iconUrl: '../public/images/icon-location.svg',
       iconSize: [46, 56],
     });
     L.marker([lat, lng], { icon: myIcon }).addTo(map);
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      attribution:
-        '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
-    }).addTo(map);
+    if (process.env.MB_API) {
+      L.tileLayer(
+        'https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}',
+        {
+          attribution:
+            'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+          maxZoom: 18,
+          id: 'mapbox/streets-v11',
+          tileSize: 512,
+          zoomOffset: -1,
+          accessToken: process.env.MB_API,
+        }
+      ).addTo(map);
+    } else {
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution:
+          '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
+      }).addTo(map);
+    }
   };
 
   return <StyledLocationMap id='map' />;
