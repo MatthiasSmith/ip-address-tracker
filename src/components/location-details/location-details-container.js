@@ -6,6 +6,7 @@ import InfoCell from './info-cell';
 const StyledLocationDetailsContainer = styled.div`
   background: white;
   border-radius: var(--border-radius);
+  box-shadow: 0px 2rem 1.5rem 0px rgba(0, 0, 0, 0.1);
   padding: 1.5rem;
 
   .loading-container,
