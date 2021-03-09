@@ -3,4 +3,4 @@ style-guide.md
 node_modules
 dist
 .env
-ipgl*.json
+ipgl*2.json

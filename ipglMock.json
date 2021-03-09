@@ -1,0 +1,28 @@
+{
+  "ip": "185.226.144.117",
+  "location": {
+    "country": "US",
+    "region": "New York",
+    "city": "New York City",
+    "lat": 40.71427,
+    "lng": -74.00597,
+    "postalCode": "10001",
+    "timezone": "-05:00",
+    "geonameId": 5128581
+  },
+  "domains": [
+    "cppesafety.cn",
+    "ulelok.cn",
+    "www.cppesafety.cn",
+    "www.ulelok.cn"
+  ],
+  "as": {
+    "asn": 35913,
+    "name": "DediPath",
+    "route": "185.226.144.0/24",
+    "domain": "http://www.dedipath.com",
+    "type": "Not Disclosed"
+  },
+  "isp": "Dedipath",
+  "proxy": { "proxy": false, "vpn": false, "tor": false }
+}
