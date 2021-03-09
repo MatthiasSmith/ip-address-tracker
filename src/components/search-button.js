@@ -27,8 +27,13 @@ const SearchButton = ({ onSubmit }) => {
   };
 
   return (
-    <StyledButton type='submit' className='flex-center' onClick={handleSubmit}>
-      <IconArrow />
+    <StyledButton
+      type='submit'
+      className='flex-center'
+      onClick={handleSubmit}
+      aria-label='search'
+    >
+      <img src={IconArrow} alt='' />
     </StyledButton>
   );
 };

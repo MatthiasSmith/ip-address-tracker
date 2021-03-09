@@ -1,4 +1,5 @@
 import { createGlobalStyle } from 'styled-components';
+import bgImage from '../public/images/pattern-bg.png';
 
 const GlobalStyles = createGlobalStyle`
   :root {
@@ -36,7 +37,7 @@ const GlobalStyles = createGlobalStyle`
 
   .top-section {
     padding: 1.72rem 1.5rem 0;
-    background-image: url('../public/images/pattern-bg.png');
+    background-image: url(${bgImage});
     background-size: 280% 100%;
     background-position: 55% 0%;
     background-repeat: no-repeat;

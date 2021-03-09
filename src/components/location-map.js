@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
+import iconLocationSvg from '../../public/images/icon-location.svg';
+
 const StyledLocationMap = styled.div`
   height: 62.5vh;
   min-height: 400px;
@@ -49,7 +51,7 @@ const LocationMap = ({ lat, lng }) => {
 
     map.panTo([lat, lng], 16).panBy([0, -35]);
     const myIcon = L.icon({
-      iconUrl: '../public/images/icon-location.svg',
+      iconUrl: iconLocationSvg,
       iconSize: [46, 56],
     });
     L.marker([lat, lng], { icon: myIcon }).addTo(map);

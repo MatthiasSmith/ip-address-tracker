@@ -20,6 +20,7 @@ module.exports = (env) => {
       new HtmlWebpackPlugin({
         title: 'Frontend Mentor | IP Address Tracker',
         template: './src/index.html',
+        favicon: './public/images/favicon-32x32.png',
       }),
       new Dotenv(),
     ],
@@ -36,12 +37,8 @@ module.exports = (env) => {
           },
         },
         {
-          test: /\.(png|gif)$/i,
-          use: 'file-loader',
-        },
-        {
-          test: /\.svg$/,
-          use: [{ loader: '@svgr/webpack', options: { svgo: false } }],
+          test: /\.(png|svg)$/i,
+          type: 'asset/resource',
         },
       ],
     },
@@ -61,12 +58,6 @@ module.exports = (env) => {
       ],
       splitChunks: {
         cacheGroups: {
-          styles: {
-            name: 'styles',
-            test: /\.css$/,
-            chunks: 'all',
-            enforce: true,
-          },
           commons: {
             name: 'vendor',
             test: /[\\/]node_modules[\\/]/,
