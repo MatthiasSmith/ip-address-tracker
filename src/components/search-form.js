@@ -30,6 +30,7 @@ const StyledSearchInput = styled.input.attrs((props) => ({
 
   &::placeholder {
     color: var(--dark-gray);
+    font-weight: var(--font-weight-medium);
   }
 `;
 
@@ -39,6 +40,7 @@ const SearchForm = ({ ipAddress, onChange, onSearch }) => {
       <StyledSearchInput
         onChange={onChange}
         placeholder='Search for any IP address or domain'
+        aria-label='Search for any IP address or domain'
       />
       <SearchButton onSubmit={onSearch} />
     </StyledSearchForm>
