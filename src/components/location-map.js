@@ -4,17 +4,10 @@ import styled from 'styled-components';
 import iconLocationSvg from '../../public/images/icon-location.svg';
 
 const StyledLocationMap = styled.div`
-  height: 62.5vh;
-  min-height: 400px;
-  width: 100vw;
-  position: absolute;
-  bottom: 0;
-  left: 0;
+  min-height: 450px;
+  position: relative;
   z-index: 0;
-
-  @media (min-width: 768px) {
-    height: 72.5vh;
-  }
+  flex: 1;
 `;
 
 const LocationMap = ({ lat, lng }) => {

@@ -29,6 +29,12 @@ const GlobalStyles = createGlobalStyle`
     text-rendering: optimizelegibility;
   }
 
+  main {
+    display: flex;
+    flex-flow: column;
+    min-height: 100vh;
+  }
+
   .flex-center {
     display: flex;
     justify-content: center;
@@ -42,8 +48,7 @@ const GlobalStyles = createGlobalStyle`
     background-position: 55% 0%;
     background-repeat: no-repeat;
     box-shadow: 0px 0.5rem 0.35rem 0px rgba(0, 0, 0, .06);
-    height: 37.5vh;
-    min-height: 300px;
+    height: 300px;
     position: relative;
     z-index: 1;
   }
@@ -52,8 +57,7 @@ const GlobalStyles = createGlobalStyle`
     .top-section {
       background-size: cover;
       background-position: center;
-      height: 27.5vh;
-      min-height: 280px;
+      height: 280px;
     }
   }
 `;
