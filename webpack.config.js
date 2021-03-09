@@ -22,7 +22,9 @@ module.exports = (env) => {
         template: './src/index.html',
         favicon: './public/images/favicon-32x32.png',
       }),
-      new Dotenv(),
+      new Dotenv({
+        path: path.resolve(__dirname, './.env'),
+      }),
     ],
     module: {
       rules: [
