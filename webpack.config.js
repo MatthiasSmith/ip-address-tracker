@@ -1,12 +1,14 @@
 const path = require('path');
+const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const Dotenv = require('dotenv-webpack');
 
 module.exports = (env) => {
-  return {
-    mode: env.NODE_ENV === 'development' ? 'development' : 'production',
+  const nodeEnv = env.NODE_ENV === 'development' ? 'development' : 'production';
+  const config = {
+    mode: nodeEnv,
     entry: {
       app: './src/index.js',
     },
@@ -14,16 +16,13 @@ module.exports = (env) => {
       filename: '[name].js',
       path: path.resolve(__dirname, 'dist'),
     },
-    devtool: env.NODE_ENV === 'development' ? 'inline-source-map' : false,
+    devtool: nodeEnv === 'development' ? 'inline-source-map' : false,
     plugins: [
       new CleanWebpackPlugin({ cleanStaleWebpackAssets: false }),
       new HtmlWebpackPlugin({
         title: 'Frontend Mentor | IP Address Tracker',
         template: './src/index.html',
         favicon: './public/images/favicon-32x32.png',
-      }),
-      new Dotenv({
-        path: path.resolve(__dirname, './.env'),
       }),
     ],
     module: {
@@ -46,7 +45,7 @@ module.exports = (env) => {
     },
     resolve: { extensions: ['*', '.js', '.jsx'] },
     optimization: {
-      minimize: env.NODE_ENV === 'development' ? false : true,
+      minimize: nodeEnv === 'development' ? false : true,
       minimizer: [
         new TerserPlugin({
           test: /\.js(\?.*)?$/i,
@@ -69,4 +68,19 @@ module.exports = (env) => {
       },
     },
   };
+
+  if (nodeEnv === 'development') {
+    config.plugins.push(new Dotenv());
+  } else if (nodeEnv === 'production') {
+    config.plugins.push(
+      new webpack.DefinePlugin({
+        'process.env': {
+          MB_API: JSON.stringify(process.env.MB_API),
+          IP_GL_API: JSON.stringify(process.env.IP_GL_API),
+        },
+      })
+    );
+  }
+
+  return config;
 };
