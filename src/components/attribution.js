@@ -26,7 +26,9 @@ const Attribution = () => {
       <a href='https://www.frontendmentor.io?ref=challenge' target='_blank'>
         Frontend Mentor
       </a>
-      <span>. Coded by</span> <a href='#'>Matthias</a>.
+      <span>. Coded by</span>{' '}
+      <a href='https://github.com/MatthiasSmith/ip-address-tracker'>Matthias</a>
+      .
     </StyledAttribution>
   );
 };
