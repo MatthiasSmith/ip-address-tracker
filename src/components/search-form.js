@@ -39,7 +39,6 @@ const SearchForm = ({ ipAddress, onChange, onSearch }) => {
       <StyledSearchInput
         onChange={onChange}
         placeholder='Search for any IP address or domain'
-        defaultValue={ipAddress}
       />
       <SearchButton onSubmit={onSearch} />
     </StyledSearchForm>

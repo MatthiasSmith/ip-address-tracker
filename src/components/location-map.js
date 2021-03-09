@@ -9,6 +9,7 @@ const StyledLocationMap = styled.div`
   position: relative;
   z-index: 0;
   flex: 1;
+  width: 100%;
 
   .leaflet-bottom.leaflet-right {
     max-width: 46%;
