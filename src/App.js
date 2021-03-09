@@ -10,6 +10,7 @@ import LocationMap from './components/location-map';
 const App = () => {
   const [data, setData] = useState([]);
   const [isFetching, setIsFetching] = useState(false);
+  const [hasError, setHasError] = useState(false);
   const [query, setQuery] = useState('');
   const { ip, isp, location } = data;
 
@@ -28,7 +29,9 @@ const App = () => {
   useEffect(() => fetchIPData(), []);
 
   const fetchIPData = () => {
-    let ipglRequestUrl = `https://geo.ipify.org/api/v1?apiKey=${process.env.IP_GL_API}`;
+    let ipglRequestUrl = process.env.IP_GL_API
+      ? `https://geo.ipify.org/api/v1?apiKey=${process.env.IP_GL_API}`
+      : 'ipglMock.json';
     const ipRegex = /^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/g;
     if (query) {
       ipglRequestUrl += ipRegex.test(query)
@@ -37,12 +40,21 @@ const App = () => {
     }
 
     setIsFetching(true);
+    setHasError(false);
 
     window
       .fetch(ipglRequestUrl)
-      .then((response) => response.json())
+      .then((response) => {
+        if (response.status !== 200) {
+          setHasError(true);
+        }
+        return response.json();
+      })
       .then((result) => setData(result))
-      .catch((error) => console.log(error))
+      .catch((error) => {
+        setHasError(true);
+        console.log(error);
+      })
       .finally(() => setIsFetching(false));
   };
 
@@ -70,6 +82,7 @@ const App = () => {
           timezone={timezone}
           location={locationDisplay}
           isFetching={isFetching}
+          hasError={hasError}
         />
       </section>
       <LocationMap lat={lat} lng={lng} />

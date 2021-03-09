@@ -8,9 +8,16 @@ const StyledLocationDetailsContainer = styled.div`
   border-radius: var(--border-radius);
   padding: 1.5rem;
 
-  .loading-container {
+  .loading-container,
+  .error-container {
     height: 238px;
     flex: 1;
+  }
+
+  .error-message {
+    text-align: center;
+    font-size: 0.95rem;
+    line-height: 1.3em;
   }
 
   .loading-header {
@@ -38,14 +45,28 @@ const StyledLocationDetailsContainer = styled.div`
     }
   }
 
+  .error-container {
+    flex-flow: column;
+  }
+
+  .error-header {
+    color: var(--very-dark-gray);
+    margin-bottom: 1rem;
+  }
+
   @media (min-width: 768px) {
     display: flex;
     max-width: 95%;
     margin: 0 auto;
     padding: 1.95rem;
 
-    .loading-container {
+    .loading-container,
+    .error-container {
       height: 88px;
+    }
+
+    .error-message {
+      max-width: 60%;
     }
   }
 
@@ -60,6 +81,7 @@ const LocationDetailsContainer = ({
   timezone,
   location,
   isFetching,
+  hasError,
 }) => {
   const renderInfo = (ip, location, timezone, isp) => {
     return (
@@ -69,6 +91,18 @@ const LocationDetailsContainer = ({
         <InfoCell label='Timezone' infoData={`UTC ${timezone}`} />
         <InfoCell label='ISP' infoData={isp} />
       </Fragment>
+    );
+  };
+
+  const renderError = () => {
+    return (
+      <div className='error-container flex-center'>
+        <h2 className='error-header'>Oops!</h2>
+        <p className='error-message'>
+          Please make sure you are using a valid IP address or domain, and that
+          your browser is not blocking requests.
+        </p>
+      </div>
     );
   };
 
@@ -82,7 +116,11 @@ const LocationDetailsContainer = ({
 
   return (
     <StyledLocationDetailsContainer>
-      {isFetching ? renderLoading() : renderInfo(ip, location, timezone, isp)}
+      {isFetching
+        ? renderLoading()
+        : hasError
+        ? renderError()
+        : renderInfo(ip, location, timezone, isp)}
     </StyledLocationDetailsContainer>
   );
 };
