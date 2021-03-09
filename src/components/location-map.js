@@ -2,12 +2,18 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
 import iconLocationSvg from '../../public/images/icon-location.svg';
+import Attribution from './attribution';
 
 const StyledLocationMap = styled.div`
   min-height: 450px;
   position: relative;
   z-index: 0;
   flex: 1;
+
+  .leaflet-bottom.leaflet-right {
+    max-width: 46%;
+    text-align: right;
+  }
 `;
 
 const LocationMap = ({ lat, lng }) => {
@@ -69,7 +75,11 @@ const LocationMap = ({ lat, lng }) => {
     }
   };
 
-  return <StyledLocationMap id='map' />;
+  return (
+    <StyledLocationMap id='map'>
+      <Attribution />
+    </StyledLocationMap>
+  );
 };
 
 export default LocationMap;

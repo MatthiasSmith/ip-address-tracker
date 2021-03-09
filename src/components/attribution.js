@@ -6,12 +6,13 @@ const StyledAttribution = styled.div`
   color: #333;
   font-family: 'Helvetica Neue', Arial, Helvetica, sans-serif;
   font-size: 11px;
-  padding: 2px 5px;
+  padding: 0px 5px;
   position: absolute;
   bottom: 0;
   left: 0;
   text-align: left;
-  max-width: 43%;
+  max-width: 46%;
+  z-index: 800;
 
   a {
     color: #0078a8;

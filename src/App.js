@@ -1,7 +1,6 @@
 import React, { Fragment, useEffect, useState } from 'react';
 
 import GlobalStyles from './global-styles';
-import Attribution from './components/attribution';
 import Title from './components/title';
 import SearchForm from './components/search-form';
 import LocationDetailsContainer from './components/location-details/location-details-container';
@@ -86,7 +85,6 @@ const App = () => {
         />
       </section>
       <LocationMap lat={lat} lng={lng} />
-      <Attribution />
     </Fragment>
   );
 };
