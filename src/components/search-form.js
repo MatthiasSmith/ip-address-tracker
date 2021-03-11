@@ -22,7 +22,6 @@ const StyledSearchInput = styled.input.attrs((props) => ({
   appearance: none;
   background: white;
   border: none;
-  cursor: pointer;
   font-size: 1rem;
   height: 100%;
   width: 100%;
