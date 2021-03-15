@@ -9,12 +9,8 @@ module.exports = async (req, res) => {
     url += `&ipAddress=${req.query.ipAddress}`;
   } else {
     const ip = getIp(req);
-    console.log('ip: ', ip);
     url += `&ipAddress=${ip}`;
   }
-
-  console.log(req.headers);
-  console.log(url);
 
   try {
     const results = await axios.get(url);
@@ -34,10 +30,10 @@ module.exports = async (req, res) => {
 
 function getIp(req) {
   let ip = getClientIp(req);
-  console.log('from getClientIp: ', ip);
-  let reversed = ip.split('').reverse().join('');
-  reversed = reversed.substr(0, reversed.indexOf(':'));
-  ip = reversed.split('').reverse().join('');
-  console.log('from function: ', ip);
+  if (ip.indexOf(':') > -1) {
+    let reversed = ip.split('').reverse().join('');
+    reversed = reversed.substr(0, reversed.indexOf(':'));
+    ip = reversed.split('').reverse().join('');
+  }
   return ip;
 }
