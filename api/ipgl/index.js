@@ -12,6 +12,9 @@ module.exports = async (req, res) => {
     url += `&ipAddress=${ip}`;
   }
 
+  console.log(req.headers);
+  console.log(url);
+
   try {
     const results = await axios.get(url);
 
