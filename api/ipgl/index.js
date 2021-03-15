@@ -1,11 +1,15 @@
 const axios = require('axios');
+const { getClientIp } = require('@supercharge/request-ip');
 
 module.exports = async (req, res) => {
   let url = `https://geo.ipify.org/api/v1?apiKey=${process.env.IP_GL_API}`;
-  if (req.query) {
-    Object.keys(req.query).forEach((key) => {
-      url += `&${key}=${req.query[key]}`;
-    });
+  if (req.query.domain) {
+    url += `&domain=${req.query.domain}`;
+  } else if (req.query.ip) {
+    url += `&ipAddress=${req.query.ipAddress}`;
+  } else {
+    const ip = getIp(req);
+    url += `&ipAddress=${ip}`;
   }
 
   try {
@@ -23,3 +27,11 @@ module.exports = async (req, res) => {
     res.json({ error: 'An error has occurred' });
   }
 };
+
+function getIp(req) {
+  let ip = getClientIp(req);
+  let reversed = ip.split('').reverse().join('');
+  reversed = reversed.substr(0, reversed.indexOf(':'));
+  ip = reversed.split('').reverse().join('');
+  return ip;
+}
