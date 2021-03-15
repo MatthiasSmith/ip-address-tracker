@@ -28,14 +28,12 @@ const App = () => {
   useEffect(() => fetchIPData(), []);
 
   const fetchIPData = () => {
-    let ipglRequestUrl = process.env.IP_GL_API
-      ? `https://geo.ipify.org/api/v1?apiKey=${process.env.IP_GL_API}`
-      : 'ipglMock.json';
+    let ipglRequestUrl = process.env.IP_GL_API ? `/api/ipgl` : 'ipglMock.json';
     const ipRegex = /^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/g;
     if (query) {
       ipglRequestUrl += ipRegex.test(query)
-        ? `&ipAddress=${query}`
-        : `&domain=${query}`;
+        ? `?ipAddress=${query}`
+        : `?domain=${query}`;
     }
 
     setIsFetching(true);

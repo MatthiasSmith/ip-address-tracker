@@ -57,7 +57,7 @@ const LocationMap = ({ lat, lng }) => {
     L.marker([lat, lng], { icon: myIcon }).addTo(map);
     if (process.env.MB_API) {
       L.tileLayer(
-        'https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}',
+        'http://localhost:8080/api/mapbox?id={id}&zoomLevel={z}&tiles={x}&tiles={y}',
         {
           attribution:
             'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
@@ -65,7 +65,6 @@ const LocationMap = ({ lat, lng }) => {
           id: 'mapbox/streets-v11',
           tileSize: 512,
           zoomOffset: -1,
-          accessToken: process.env.MB_API,
         }
       ).addTo(map);
     } else {

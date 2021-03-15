@@ -5,3 +5,4 @@ dist
 .env
 ipgl*2.json
 instructions.md
+.vercel
