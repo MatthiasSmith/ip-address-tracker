@@ -44,6 +44,7 @@ Users should be able to:
 - [IP Geolocation API by IPify](https://geo.ipify.org/) - For IP Address info
 - [LeafletJS](https://leafletjs.com/) - For mapping
 - [Mapbox](https://www.mapbox.com/) and [OpenStreetMap](https://www.openstreetmap.org/) - For map images
+- [Vercel Serverless Functions](https://vercel.com/docs/serverless-functions/introduction) - To act as a proxy for API requests
 
 ## Author
 
