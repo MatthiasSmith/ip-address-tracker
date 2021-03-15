@@ -56,17 +56,14 @@ const LocationMap = ({ lat, lng }) => {
     });
     L.marker([lat, lng], { icon: myIcon }).addTo(map);
     if (process.env.MB_API) {
-      L.tileLayer(
-        'http://localhost:8080/api/mapbox?id={id}&zoomLevel={z}&tiles={x}&tiles={y}',
-        {
-          attribution:
-            'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
-          maxZoom: 18,
-          id: 'mapbox/streets-v11',
-          tileSize: 512,
-          zoomOffset: -1,
-        }
-      ).addTo(map);
+      L.tileLayer('api/mapbox?id={id}&zoomLevel={z}&tiles={x}&tiles={y}', {
+        attribution:
+          'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+        maxZoom: 18,
+        id: 'mapbox/streets-v11',
+        tileSize: 512,
+        zoomOffset: -1,
+      }).addTo(map);
     } else {
       L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution:
