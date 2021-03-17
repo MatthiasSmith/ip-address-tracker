@@ -5,7 +5,7 @@ module.exports = async (req, res) => {
   let url = `https://geo.ipify.org/api/v1?apiKey=${process.env.IP_GL_API}`;
   if (req.query.domain) {
     url += `&domain=${req.query.domain}`;
-  } else if (req.query.ip) {
+  } else if (req.query.ipAddress) {
     url += `&ipAddress=${req.query.ipAddress}`;
   } else {
     const ip = getIp(req);
